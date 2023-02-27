@@ -1,3 +1,10 @@
+import sys
+from os.path import dirname as d
+from os.path import abspath, join
+root_dir = d(d(abspath(_file_)))
+sys.path.append(root_dir)
+
+
 from gendiff.generate_diff import generate_diff
 import pytest
 
