@@ -10,14 +10,18 @@ jobs:
 
     steps:
       - uses: action/checkout@v3
-      - name: Install poetry
-        run: pip install poetry
-      - name: Set up Python
+      - name: Setup Python
         uses: action/setup-python@v4
         with:
           python-version: '3.8'
-          cache: 'poetry'
-      - name: Install dependencies
-        run: make install
-      - run: make lint
-      - run: make test
+      - name: install dependencies
+        run: |
+          pip install poetry
+          poetry install
+          make tests
+      - name: code coverage
+        uses: paambaati/codeclimate-action@v3.0.0
+        env:
+          CC_TEST_REPORTER_ID: e3a7cc766359c0574e0ae382e294d1ac36fa25aaa7bc56c888ee8a51991ea01c
+        with:
+          coverageCommand: make coverage

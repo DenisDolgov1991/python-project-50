@@ -13,10 +13,14 @@ publish:
 package-install:
 	python3 -m pip install --user dist/*.whl
 
-package-reinstall:
+reinstall:
 	python3 -m pip install --user --force-reinstall dist/*.whl
 
 lint:
 	poetry run flake8 gendiff
 
+tests:
+	poetry run pytest
 
+coverage:
+	poetry run pytest --cov=gendiff tests/ --cov-report xml
