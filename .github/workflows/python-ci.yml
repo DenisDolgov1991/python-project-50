@@ -9,16 +9,18 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: action/checkout@v3
-      - name: Setup Python
-        uses: action/setup-python@v4
+      - uses: actions/checkout@v3
+      - name: Install poetry
+        run: pip install poetry
+      - name: Set up Python
+        uses: actions/setup-python@v4
         with:
           python-version: '3.8'
-      - name: install dependencies
-        run: |
-          pip install poetry
-          poetry install
-          make tests
+          cache: 'poetry'
+      - name: Install dependencies
+        run: make install
+      - run: make lint
+      - run: make tests
       - name: code coverage
         uses: paambaati/codeclimate-action@v3.0.0
         env:
