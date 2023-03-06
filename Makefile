@@ -19,8 +19,14 @@ reinstall:
 lint:
 	poetry run flake8 gendiff
 
-tests:
+test:
 	poetry run pytest
 
 coverage:
 	poetry run pytest --cov=gendiff tests/ --cov-report xml
+
+sekfcheck:
+	poetry check
+
+check:
+	sekfchek test lint
