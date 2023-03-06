@@ -7,10 +7,12 @@ sys.path.append(root_dir)
 
 from gendiff.generate_diff import generate_diff
 import pytest
+import json
+import itertools
 
 def test_generate_diff():
-    file1 = json.load(open('tests/fixtures/file_1.json'))
-    file2 = json.load(open('tests/fixtures/file_2.json'))
+    file1 = json.load(open('tests/fixtures/file1.json'))
+    file2 = json.load(open('tests/fixtures/file2.json'))
     result = '''{
 - follow: false
   host: hexlet.io
