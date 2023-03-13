@@ -7,29 +7,24 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    strategy:
-    matrix:
-        # we want to test our package on several versions of Python
-        python-version: [3.8]
+
     steps:
       - uses: actions/checkout@v3
+      - name: Install poetry
+        run: pip install poetry
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
-          python-version: '3.8'
-        # make depends on poetry
+          python-version: '3.10'
+          cache: 'poetry'
       - name: Install dependencies
-        run: |
-          pip install poetry
-          make install
-      - name: Run linter and pytest
-        run: |
-          make check
-      - name: Test & publish code coverage
+        run: make install
+      - run: make lint
+      - run: make test
+      - name: Check & publish code coverage
         uses: paambaati/codeclimate-action@v3.2.0
-        if: github.ref_name == 'main'
         env:
-          CC_TEST_REPORTER_ID: e3a7cc766359c0574e0ae382e294d1ac36fa25aaa7bc56c888ee8a51991ea01c
+          CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
         with:
-          coverageCommand: make coverage
-          debug: true
+          coverageCommand: poetry run pytest --cov --cov-report lcov
+          coverageLocations: ${{github.workspace}}/*.lcov:lcov
