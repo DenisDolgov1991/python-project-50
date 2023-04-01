@@ -1,31 +1,21 @@
 DOT = '.'
 
 
-def get_normal(value):
+def to_str(value):
     if isinstance(value, bool):
-        result = str(value).lower()
-    elif value is None:
-        result = 'null'
-    elif value == '':
-        result = "''"
-    elif value == '[complex_value]' or isinstance(value, int):
-        result = value
-    else:
-        result = f"'{str(value)}'"
-    return result
-
-
-def check(value):
+        return str(value).lower()
+    if value is None:
+        return 'null'
     if isinstance(value, dict):
-        return '[complex_value]'
-                                                                                                        return value
+        return '[complex value]'
+    if isinstance(value, int):
+        return value
+    return f"'{str(value)}'"
+                                                                                   return value
 
 
 
-def walk(difference_dict, path): # noqa: C901
-    if not isinstance(difference_dict, dict):
-        return get_normal(difference_dict)
-
+def plain(difference_dict, path=''):
     lines = []
 
     for key, diff_info in difference_dict.items():
@@ -33,7 +23,7 @@ def walk(difference_dict, path): # noqa: C901
         status = diff_info.get('status')
 
         if status == 'added':
-            value = walk(check(value), path + DOT)
+            value = to_str(value)
             phrase = ' was added with value: '
             lines.append(
                     f"Property '{path + key}'{phrase}{value}"
@@ -45,9 +35,7 @@ def walk(difference_dict, path): # noqa: C901
             )
 
         elif status == 'updated':
-            value1, value2 = value
-            value1 = walk(check(value1), path + DOT)
-            value2 = walk(check(value2), path + DOT)
+            value1, value2 = map(to_str, value)
             item = path + key
 
             lines.append(
@@ -55,10 +43,6 @@ def walk(difference_dict, path): # noqa: C901
             )
 
         elif isinstance(value, dict):
-            lines.append(walk(value, path + key + DOT))
+            lines.append(plain(value, path + key + DOT))
 
     return '\n'.join(lines)
-
-
-def plain(difference_dictionary):
-    return walk(difference_dictionary, '')

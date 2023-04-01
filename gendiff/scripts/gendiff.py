@@ -2,18 +2,15 @@
 
 from gendiff.cli import parse_arguments
 from gendiff.diff import generate_diff
-from gendiff.formatters.stylish import stylish
-from gendiff.formatters.plain import plain
-
-
-args = parse_arguments()
 
 
 def main():
-    if args.format == 'plain':
-        diff = generate_diff(args.first_file, args.second_file, format=plain)
-    else:
-        diff = generate_diff(args.first_file, args.second_file, format=stylish)
+    arguments = parse_arguments()
+    diff = generate_diff(
+        arguments.first_file,
+        arguments.second_file,
+        arguments.format
+    )
 
     print(diff)
 
