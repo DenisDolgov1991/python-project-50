@@ -1,6 +1,6 @@
 from gendiff.formatters.stylish import stylish
 from gendiff.formatters.plain import plain
-from gendiff.formatters.formatter_json import convert_to_json
+from gendiff.formatters.json import convert_to_json
 
 
 def apply_formatter(diff_tree, formatter_name):

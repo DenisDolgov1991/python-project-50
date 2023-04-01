@@ -34,7 +34,7 @@ def stylish(diff_dict, level=0):
             lines.append(
                     f'{current_indent}{DEL}{key}: {to_str(value, level + 1)}'
             )
-        elif status == 'updaited':
+        elif status == 'updated':
             value1, value2 = value
             lines.append(
                     f'{current_indent}{DEL}{key}: {to_str(value1, level + 1)}'
