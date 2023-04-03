@@ -1,10 +1,8 @@
 def build_diff_tree(content1, content2):
     diff_tree = {}
-    keys1 = set(content1)
-    keys2 = set(content2)
-    all_keys = keys1 | keys2
-    added = keys2 - keys1
-    deleted = keys1 - keys2
+    all_keys = content1.keys() | content2.keys()
+    added = content2.keys() - contetnt1.keys()
+    deleted = content1.keys() - contetnt2.keys2
 
     for key in sorted(all_keys):
         if key in added:

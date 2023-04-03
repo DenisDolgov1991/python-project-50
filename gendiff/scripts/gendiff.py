@@ -11,7 +11,6 @@ def main():
         arguments.second_file,
         arguments.format
     )
-
     print(diff)
 
 

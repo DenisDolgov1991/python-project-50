@@ -11,8 +11,6 @@ def to_str(value):
     if isinstance(value, int):
         return value
     return f"'{str(value)}'"
-                                                                                   return value
-
 
 
 def plain(difference_dict, path=''):
@@ -24,9 +22,8 @@ def plain(difference_dict, path=''):
 
         if status == 'added':
             value = to_str(value)
-            phrase = ' was added with value: '
             lines.append(
-                    f"Property '{path + key}'{phrase}{value}"
+                f"Property '{path + key}'was added with value: {value}"
             )
         
         elif status == 'deleted':

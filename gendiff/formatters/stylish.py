@@ -28,23 +28,23 @@ def stylish(diff_dict, level=0):
 
         if status == 'added':
             lines.append(
-                    f'{current_indent}{ADD}{key}: {to_str(value, level + 1)}'
+                f'{current_indent}{ADD}{key}: {to_str(value, level + 1)}'
             )
         elif status == 'deleted':
             lines.append(
-                    f'{current_indent}{DEL}{key}: {to_str(value, level + 1)}'
+                f'{current_indent}{DEL}{key}: {to_str(value, level + 1)}'
             )
         elif status == 'updated':
             value1, value2 = value
             lines.append(
-                    f'{current_indent}{DEL}{key}: {to_str(value1, level + 1)}'
+                f'{current_indent}{DEL}{key}: {to_str(value1, level + 1)}'
             )
             lines.append(
-                    f'{current_indent}{ADD}{key}: {to_str(value2, level + 1)}'
+                f'{current_indent}{ADD}{key}: {to_str(value2, level + 1)}'
             )
         else:
             lines.append(
-                    f'{current_indent}{SP}{key}: {to_str(value, level + 1)}'
+                f'{current_indent}{SP}{key}: {to_str(value, level + 1)}'
             )
 
     result = itertools.chain("{", lines, [current_indent + "}"])
