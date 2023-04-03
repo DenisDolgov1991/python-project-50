@@ -14,5 +14,5 @@ def get_content(file_path):
 def generate_diff(file_path1, file_path2, format='stylish'):
     content1, content2 = map(get_content, (file_path1, file_path2))
     diff_tree = build_diff_tree(content1, content2)
-    
+
     return apply_formatter(diff_tree, format)

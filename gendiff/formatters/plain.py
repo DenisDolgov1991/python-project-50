@@ -25,10 +25,10 @@ def plain(difference_dict, path=''):
             lines.append(
                 f"Property '{path + key}'was added with value: {value}"
             )
-        
+
         elif status == 'deleted':
             lines.append(
-                    f"Property '{path + key}' was removed"
+                f"Property '{path + key}' was removed"
             )
 
         elif status == 'updated':
@@ -36,7 +36,7 @@ def plain(difference_dict, path=''):
             item = path + key
 
             lines.append(
-                    f"Property '{item}' was updated. From {value1} to {value2}"
+                f"Property '{item}' was updated. From {value1} to {value2}"
             )
 
         elif isinstance(value, dict):
