@@ -17,7 +17,7 @@ def test_generate_diff_in_json_format(input1, input2, format):
 
 @pytest.mark.parametrize('input1, input2, format', [
     ('file1_tree.yaml', 'file2_tree.yaml', 'style'),
-    ('file1_tree.json', 'file2_tree.json', 'plain'),
+    ('file1_tree.json', 'file2_tree.json', 'pain'),
     ('file1_tree.yaml', 'file2_tree.yaml', 'JSON')
 ])
 

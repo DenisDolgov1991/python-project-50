@@ -3,7 +3,7 @@ import pytest
 from tests import get_full_path
 
 
-@pytest.mark.parametrize('input1', 'input2', [
+@pytest.mark.parametrize('input1, input2', [
     ('result.txt', 'result_tree.txt'),
 ])
 def test_exception_in_generate_diff(input1, input2):
