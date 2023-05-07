@@ -1,4 +1,7 @@
 DOT = '.'
+ADDED = 'added'
+DELETED = 'deleted'
+UPDATED = 'updated'
 
 
 def to_str(value):
@@ -20,18 +23,18 @@ def plain(difference_dict, path=''):
         value = diff_info.get('value')
         status = diff_info.get('status')
 
-        if status == 'added':
+        if status == ADDED:
             value = to_str(value)
             lines.append(
                 f"Property '{path + key}'was added with value: {value}"
             )
 
-        elif status == 'deleted':
+        elif status == DELETED:
             lines.append(
                 f"Property '{path + key}' was removed"
             )
 
-        elif status == 'updated':
+        elif status == UPDATED:
             value1, value2 = map(to_str, value)
             item = path + key
 
