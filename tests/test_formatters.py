@@ -11,7 +11,6 @@ from tests import get_full_path
 def test_generate_diff_in_json_format(input1, input2, format):
     file1, file2 = map(get_full_path, (input1, input2))
     result = generate_diff(file1, file2, format)
-    
     assert json.loads(result)
 
 
@@ -20,7 +19,6 @@ def test_generate_diff_in_json_format(input1, input2, format):
     ('file1_tree.json', 'file2_tree.json', 'pain'),
     ('file1_tree.yaml', 'file2_tree.yaml', 'JSON')
 ])
-
 
 def test_exception_in_generate_diff_in_wrong_format(input1, input2, format):
     file1, file2 = map(get_full_path, (input1, input2))
