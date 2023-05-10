@@ -1,12 +1,14 @@
 import itertools
 
+from gendiff import difference
+
 
 ADD = '  + '
 DEL = '  - '
 SP = '    '
 
 
-def to_str(value, level):
+def get_to_str(value, level):
     if isinstance(value, dict):
         return stylish(value, level)
     if isinstance(value, bool):
@@ -26,15 +28,15 @@ def stylish(diff_dict, level=0):
         status = '' if not isinstance(diff_info, dict) \
             else diff_info.get('status')
 
-        if status == 'added':
+        if status == ADDED:
             lines.append(
                 f'{current_indent}{ADD}{key}: {to_str(value, level + 1)}'
             )
-        elif status == 'deleted':
+        elif status == DELETED:
             lines.append(
                 f'{current_indent}{DEL}{key}: {to_str(value, level + 1)}'
             )
-        elif status == 'updated':
+        elif status == UPDATED:
             value1, value2 = value
             lines.append(
                 f'{current_indent}{DEL}{key}: {to_str(value1, level + 1)}'

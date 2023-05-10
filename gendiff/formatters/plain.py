@@ -1,10 +1,10 @@
+from gendiff import difference
+
+
 DOT = '.'
-ADDED = 'added'
-DELETED = 'deleted'
-UPDATED = 'updated'
 
 
-def to_str(value):
+def get_to_str(value):
     if isinstance(value, bool):
         return str(value).lower()
     if value is None:
@@ -24,7 +24,7 @@ def plain(difference_dict, path=''):
         status = diff_info.get('status')
 
         if status == ADDED:
-            value = to_str(value)
+            value = get_to_str(value)
             lines.append(
                 f"Property '{path + key}' was added with value: {value}"
             )
@@ -35,7 +35,7 @@ def plain(difference_dict, path=''):
             )
 
         elif status == UPDATED:
-            value1, value2 = map(to_str, value)
+            value1, value2 = map(get_to_str, value)
             item = path + key
 
             lines.append(
