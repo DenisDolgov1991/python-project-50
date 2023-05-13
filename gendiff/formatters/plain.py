@@ -1,4 +1,4 @@
-from gendiff import difference
+from gendiff.difference import ADDED, DELETED, UPDATED
 
 
 DOT = '.'

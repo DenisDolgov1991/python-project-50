@@ -1,6 +1,6 @@
 import itertools
 
-from gendiff import difference
+from gendiff.difference import ADDED, DELETED, UPDATED
 
 
 ADD = '  + '
@@ -30,23 +30,23 @@ def stylish(diff_dict, level=0):
 
         if status == ADDED:
             lines.append(
-                f'{current_indent}{ADD}{key}: {to_str(value, level + 1)}'
+                f'{current_indent}{ADD}{key}: {get_to_str(value, level + 1)}'
             )
         elif status == DELETED:
             lines.append(
-                f'{current_indent}{DEL}{key}: {to_str(value, level + 1)}'
+                f'{current_indent}{DEL}{key}: {get_to_str(value, level + 1)}'
             )
         elif status == UPDATED:
             value1, value2 = value
             lines.append(
-                f'{current_indent}{DEL}{key}: {to_str(value1, level + 1)}'
+                f'{current_indent}{DEL}{key}: {get_to_str(value1, level + 1)}'
             )
             lines.append(
-                f'{current_indent}{ADD}{key}: {to_str(value2, level + 1)}'
+                f'{current_indent}{ADD}{key}: {get_to_str(value2, level + 1)}'
             )
         else:
             lines.append(
-                f'{current_indent}{SP}{key}: {to_str(value, level + 1)}'
+                f'{current_indent}{SP}{key}: {get_to_str(value, level + 1)}'
             )
 
     result = itertools.chain("{", lines, [current_indent + "}"])

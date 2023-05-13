@@ -1,6 +1,6 @@
 import os
 
-from gendiff import parser
+from gendiff.parser import parse
 
 
 def get_content(file_path):
