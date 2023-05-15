@@ -16,7 +16,7 @@ def get_to_str(value):
     return f"'{str(value)}'"
 
 
-def plain(difference_dict, path=''):
+def render_plain(difference_dict, path=''):
     lines = []
 
     for key, diff_info in difference_dict.items():
@@ -43,6 +43,6 @@ def plain(difference_dict, path=''):
             )
 
         elif isinstance(value, dict):
-            lines.append(plain(value, path + key + DOT))
+            lines.append(render_plain(value, path + key + DOT))
 
     return '\n'.join(lines)

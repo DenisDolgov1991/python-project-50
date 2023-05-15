@@ -10,7 +10,7 @@ SP = '    '
 
 def get_to_str(value, level):
     if isinstance(value, dict):
-        return stylish(value, level)
+        return render_stylish(value, level)
     if isinstance(value, bool):
         return str(value).lower()
     if value is None:
@@ -18,7 +18,7 @@ def get_to_str(value, level):
     return str(value)
 
 
-def stylish(diff_dict, level=0):
+def render_stylish(diff_dict, level=0):
     current_indent = SP * level
     lines = []
 
