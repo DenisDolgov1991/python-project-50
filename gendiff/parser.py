@@ -11,16 +11,13 @@ def open_yaml(path):
     return yaml.safe_load(path)
 
 
-def parse(content, format_name):
-    if format_name == 'json':
-        return open_json(content)
-    if format_name == 'yaml' or format_name == 'yml':
-        return open_yaml(content)
-    raise Exception('Comparison is available only for json and yaml files')
+DICT_FORMAT = {'yaml': open_yaml, 'yml': open_yaml, 'json': open_json}
 
 
 def get_content(file_path):
-    _, extension = os.path.splitext(file_path)
+    path, extension = os.path.splitext(file_path)
+    if extension not in DICT_FORMAT:
+        return 'Comparison is available only for json and yaml files'
     file_format = extension[1:]
-    with open(file_path) as input:
-        return parse(input, file_format)
+    with open(file_path) as path:
+        return DICT_FORMAT[file_format](path)
