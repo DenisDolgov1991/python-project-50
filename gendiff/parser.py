@@ -17,7 +17,7 @@ DICT_FORMAT = {'yaml': open_yaml, 'yml': open_yaml, 'json': open_json}
 def get_content(file_path):
     path, extension = os.path.splitext(file_path)
     if extension not in DICT_FORMAT:
-        return ''
+        return 'json'
     file_format = extension[1:]
     with open(file_path) as path:
         return DICT_FORMAT[file_format](path)
