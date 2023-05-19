@@ -18,6 +18,6 @@ def get_content(file_path):
     path, extension = os.path.splitext(file_path)
     file_format = extension[1:]
     if file_format not in DICT_FORMAT:
-        raise 'Comparison is available only for json and yaml files'
+        raise ''
     with open(file_path) as path:
         return DICT_FORMAT[file_format](path)
